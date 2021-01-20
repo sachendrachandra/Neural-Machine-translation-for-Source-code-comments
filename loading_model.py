@@ -1,18 +1,19 @@
-model = torch.load("model")
+import torch
+import sys
+model = torch.load(sys.argv[1])
 model.eval()
 
-import torch
 torch.cuda.empty_cache()
 dic={}
 
-with open("vocab.nl",'r') as fp: 
+with open(sys.argv[2],'r') as fp: 
   lines = fp.read().splitlines()
 k=0
 for line in lines:
   dic[k]=line
   k=k+1
 
-f=open("predicted_output_f",'a')
+f=open(sys.argv[3],'a')
 
 for i in range(20000):
   s=src_test[i:i+1]
