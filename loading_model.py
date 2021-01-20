@@ -1,19 +1,19 @@
 import torch
 import sys
-model = torch.load(sys.argv[1])
+model = torch.load(sys.argv[2])
 model.eval()
 
 torch.cuda.empty_cache()
 dic={}
 
-with open(sys.argv[2],'r') as fp: 
+with open(sys.argv[3],'r') as fp: 
   lines = fp.read().splitlines()
 k=0
 for line in lines:
   dic[k]=line
   k=k+1
 
-f=open(sys.argv[3],'a')
+f=open(sys.argv[4],'a')
 
 for i in range(20000):
   s=src_test[i:i+1]
