@@ -41,14 +41,14 @@ if __name__=='__main__':
 
   device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-  src_train = torch.tensor(data_process(sys.argv[1],sys.argv[3],100)).to(device=device)
-  trg_train = torch.tensor(data_process(sys.argv[2],sys.argv[4],20)).to(device=device)
+  src_train = torch.tensor(data_process(sys.argv[2],sys.argv[4],100)).to(device=device)
+  trg_train = torch.tensor(data_process(sys.argv[3],sys.argv[5],20)).to(device=device)
 
-  src_test = torch.tensor(data_process(sys.argv[1],sys.argv[5],100)).to(device=device)
-  trg_test = torch.tensor(data_process(sys.argv[2],sys.argv[6],20)).to(device=device)
+  src_test = torch.tensor(data_process(sys.argv[2],sys.argv[6],100)).to(device=device)
+  trg_test = torch.tensor(data_process(sys.argv[3],sys.argv[7],20)).to(device=device)
 
-  src_valid = torch.tensor(data_process(sys.argv[1],sys.argv[7],100)).to(device=device)
-  trg_valid = torch.tensor(data_process(sys.argv[2],sys.argv[8],20)).to(device=device)
+  src_valid = torch.tensor(data_process(sys.argv[2],sys.argv[8],100)).to(device=device)
+  trg_valid = torch.tensor(data_process(sys.argv[3],sys.argv[9],20)).to(device=device)
 
   train=[]
   test=[]
