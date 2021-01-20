@@ -35,7 +35,7 @@ Number of Heads = 8
 
 Number of Layers = 2
 
-The code for Transformer is included in the file Transformer.py
+The code for Transformer is included in the file Transformer_code.py
 
 Third, is the the training , evaluation of the model and then saving it. The model is trained for 6 epochs with Adam optimizer and Cross entropy loss. The test set loss was "0.00021304885184909386". The code for training, evaluating and saving the model can be seen in file Training_saving.py. The trained model can be downloaded using the link>
 
