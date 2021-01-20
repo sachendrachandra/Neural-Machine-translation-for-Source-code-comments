@@ -346,9 +346,9 @@ def evaluate(model: nn.Module,
 
             output = model(src, trg)
             output = output[1:].view(-1, output.shape[-1])
-            print(output.shape)
+            # print(output.shape)
             trg = trg[1:].view(-1)
-            print(trg.shape)
+            # print(trg.shape)
 
             loss = criterion(output, trg)
 
@@ -376,9 +376,9 @@ model.apply(init_weights)
 
 optimizer = optim.Adam(model.parameters())
 
-N_EPOCHS = 6
+N_EPOCHS = 10
 CLIP = 1
-t=1
+
 best_valid_loss = float('inf')
 
 for epoch in range(N_EPOCHS):
