@@ -44,7 +44,9 @@ it can be executed as follow:
 
 python3 "Path to prediction file" "Path to reference file"
 
-The file run.py includes entire code from data processing till training and saving the model  
+At last, in order to execute the entire code right from data processing to saving the model, we can execute the file run.py as follows:
+
+python3 "Path to source vocabulary" "Path to natural Language vocabulary" "Path to training source codes" "Path to training natural language comments" "Path to testing source codes" "Path to Testing natural Language comments" "Path to validation source codes" "Path to Validation natural language comments" "Path where the model is to be saved" 
 
 
 
