@@ -5,6 +5,10 @@
 import sys
 import torch
 import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader
+import math
+import time
 
 class SelfAttention(nn.Module):
   def __init__(self,embed_size,heads):
@@ -250,16 +254,17 @@ def data_process(vocab,file,maxl):
   
   return list_of_lists
   
-  device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-src_train = torch.tensor(data_process("/content/drive/MyDrive/vocab.code","/content/drive/MyDrive/train.token.code",100)).to(device=device)
-  trg_train = torch.tensor(data_process("/content/drive/MyDrive/vocab.nl","/content/drive/MyDrive/train.token.nl",20)).to(device=device)
+src_train = torch.tensor(data_process(sys.argv[1],sys.argv[3],100)).to(device=device)
+trg_train = torch.tensor(data_process(sys.argv[2],sys.argv[4],20)).to(device=device)
 
- src_test = torch.tensor(data_process("/content/drive/MyDrive/vocab.code","/content/drive/MyDrive/test.token.code",100)).to(device=device)
-  trg_test = torch.tensor(data_process("/content/drive/MyDrive/vocab.nl","/content/drive/MyDrive/test.token.nl",20)).to(device=device)
+src_test = torch.tensor(data_process(sys.argv[1],sys.argv[5],100)).to(device=device)
+trg_test = torch.tensor(data_process(sys.argv[2],sys.argv[6],20)).to(device=device)
 
-src_valid = torch.tensor(data_process("/content/drive/MyDrive/vocab.code","/content/drive/MyDrive/valid.token.code",100)).to(device=device)
-  trg_valid = torch.tensor(data_process("/content/drive/MyDrive/vocab.nl","/content/drive/MyDrive/valid.token.nl",20)).to(device=device)
+src_valid = torch.tensor(data_process(sys.argv[1],sys.argv[7],100)).to(device=device)
+trg_valid = torch.tensor(data_process(sys.argv[2],sys.argv[8],20)).to(device=device)
+
 
 train=[]
 test=[]
@@ -283,10 +288,6 @@ test_iter = DataLoader(test, batch_size=256,
 
 #_______________________________________________________________________________________________________________________________
 # Training and Evaluation methods
-
-import math
-import time
-import torch.optim as optim
 
 def init_weights(m: nn.Module):
     for name, param in m.named_parameters():
@@ -398,36 +399,4 @@ for epoch in range(N_EPOCHS):
 test_loss = evaluate(model, test_iter, criterion)
 print("test loss: ",test_loss)
 
-torch.save(model,"model")
-
-#______________________________________________________________________________________________________________________
-# Getting outputs for Test set using saved model
-
-model = torch.load("model")
-model.eval()
-
-import torch
-torch.cuda.empty_cache()
-dic={}
-
-with open("vocab.nl",'r') as fp: 
-  lines = fp.read().splitlines()
-k=0
-for line in lines:
-  dic[k]=line
-  k=k+1
-
-f=open("predicted_output_f",'a')
-
-for i in range(20000):
-  s=src_test[i:i+1]
-  t=trg_test[i:i+1]
-  out=model(s,t[:, :-1])
-  li=out.shape
-  for i in range(li[0]):
-    for j in range(li[1]):
-      d=int(torch.argmax(out[i][j]))
-      if(str(dic[d])!= "</S>" and str(dic[d])!= "uno" and str(dic[d])!= "<S>"):
-        f.write(str(dic[d])+" ")
-    f.write("\n")
-#__________________________________________________________________________________________________________________________
+torch.save(model,sys.argv[9])
