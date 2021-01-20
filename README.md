@@ -1,5 +1,7 @@
 # TSE_project_2
 
+This is a part of the Topics in Software Engineering course Project offered at IISc Bangalore by Associate Professor Aditya Kanade and Professor Shirish Shevade.
+
 The project involves implementaion of the initial Transformer model for Machine Translation Task. It aims at generating Natural language comments for JAVA source code. It is an alternative approach to generate comments for JAVA source code inspired from the paper "https://xin-xia.github.io/publication/emse192.pdf". The paper used LSTM encoder-decoder architecture with attention mechanism to do the comment generation task. 
 
 The dataset for the project is same as used by the authors of the paper mentioned above. The dataset can be accessed using the link https://drive.google.com/drive/folders/10g1vKYDjtDW3zTzWZSfn2kN8lkalqy7q?usp=sharing. Their are 4 different sets of data: RQ1, RQ2, RQ3 and RQ4. I have used RQ1.
