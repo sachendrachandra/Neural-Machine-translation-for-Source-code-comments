@@ -1,4 +1,4 @@
-# TSE_project_2
+# Natural language comments generation for JAVA source Code
 
 This is a part of the Topics in Software Engineering course Project offered at IISc Bangalore by Associate Professor Aditya Kanade and Professor Shirish Shevade.
 
